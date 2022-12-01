@@ -1,0 +1,16 @@
+# ninja log v5
+11	519	6915439518599991	CMakeFiles/LaneAutomationSim.dir/TrafficLight/TrafficLight.cpp.obj	566c641e637b6bbf
+5	605	6915439948359415	CMakeFiles/LaneAutomationSim.dir/main.cpp.obj	7186ecb6925ef830
+8	535	6915439947661272	CMakeFiles/LaneAutomationSim.dir/Screen/Screen.cpp.obj	5744a683c4927dac
+606	905	6915439951205666	LaneAutomationSim.exe	4b3c8d791b579746
+2	434	6915439946663933	CMakeFiles/LaneAutomationSim.dir/Lane/Lane.cpp.obj	ee8d9175ddbf845
+10	414	6915439946462202	CMakeFiles/LaneAutomationSim.dir/Traffic/Traffic.cpp.obj	e8e0c72b39a89ca4
+3	380	6915600584287402	build.ninja	a9313501f29da84
+15	524	6915439518619942	CMakeFiles/LaneAutomationSim.dir/Vehicle/Vehicle.cpp.obj	794162e01d4e7dd9
+6	358	6915633882447691	CMakeFiles/LaneAutomationSim.dir/Lane/Lane.cpp.obj	15a5b60291108120
+9	364	6915633882518233	CMakeFiles/LaneAutomationSim.dir/Traffic/Traffic.cpp.obj	45a95cd9290f29f8
+13	383	6915633882719539	CMakeFiles/LaneAutomationSim.dir/Vehicle/Vehicle.cpp.obj	8093dff6346461d4
+18	386	6915633882779599	CMakeFiles/LaneAutomationSim.dir/TrafficLight/TrafficLight.cpp.obj	713ae05691df8c6
+22	457	6915633883380412	CMakeFiles/LaneAutomationSim.dir/Screen/Screen.cpp.obj	effde0f6d95e2e77
+2	471	6915633883640645	CMakeFiles/LaneAutomationSim.dir/main.cpp.obj	c0b94386fc49315e
+471	716	6915633886018439	LaneAutomationSim.exe	4b3c8d791b579746
