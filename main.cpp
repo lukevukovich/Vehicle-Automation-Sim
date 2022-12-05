@@ -5,6 +5,7 @@
 #include "Vehicle/Vehicle.h"
 #include "TrafficLight/TrafficLight.h"
 #include "Screen/Screen.h"
+#include "Traffic/Traffic.h"
 
 using namespace std;
 
@@ -38,6 +39,7 @@ int main() {
     Lane lane = Lane();
     Vehicle vehicle = Vehicle();
     TrafficLight trafficLight = TrafficLight();
+    Traffic traffic = Traffic();
 
     //Set initial lane position
     //laneStart : starting y position of lane. Lane has width of GAP - 1
@@ -86,6 +88,8 @@ int main() {
 
         //Set number of lights passed
         lights = vehicle.getLights();
+
+        traffic.setTraffic(board, units, laneStart);
 
         //Get vehicle's vertical move based on lane position
         vehicleMove = vehicle.automationLogic(board, vehicleX, vehicleY);
