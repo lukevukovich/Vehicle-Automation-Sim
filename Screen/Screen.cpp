@@ -3,6 +3,7 @@
 #include "Screen.h"
 #include "../Vehicle/Vehicle.h"
 #include "../TrafficLight/TrafficLight.h"
+#include "../Traffic/Traffic.h"
 
 using namespace std;
 
@@ -78,7 +79,8 @@ bool Screen::isObject(char b[][WIDTH], int i, int j) {
     bool o = false;
     if (b[i][j] == VEHICLE ||
         b[i][j] == STOP ||
-        b[i][j] == GO)
+        b[i][j] == GO ||
+        b[i][j] == TRAFFIC)
         o = true;
 
     return o;
@@ -98,6 +100,11 @@ string Screen::getColor(char b[][WIDTH], int i, int j) {
     }
     else if (b[i][j] == GO) {
         s += GREEN;
+        s += b[i][j];
+        s += RESET;
+    }
+    else if (b[i][j] == TRAFFIC) {
+        s += YELLOW;
         s += b[i][j];
         s += RESET;
     }
