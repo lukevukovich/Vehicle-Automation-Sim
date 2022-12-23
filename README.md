@@ -4,5 +4,4 @@ Currently includes lane and traffic light generation.
 Vehicle will react to simulation environment accordingly.
 
 To do list:
-* Improve setTraffic function for better randomization
-* Update vehicle automation logic to react to oncoming traffic
+* Allow for user customization of sim (size, population, speed, etc)
