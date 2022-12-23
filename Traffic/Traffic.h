@@ -6,11 +6,13 @@
 
 #define TRAFFIC '<'
 
+//Traffic color
 #define YELLOW "\x1B[33m"
 
 class Traffic {
 
 public:
+    //Generate oncoming traffic
     void setTraffic(char[][WIDTH], int, int);
 
 };
