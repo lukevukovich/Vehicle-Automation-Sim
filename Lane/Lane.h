@@ -6,8 +6,9 @@
 //Length & width of sim board
 #define LENGTH 25
 #define WIDTH (LENGTH*3)
-//Lane width (GAP - 1)
-#define GAP 6
+//Lane width
+//MUST BE >= 6
+#define GAP 7
 //Lane edge character
 #define LANE 'W'
 //Reset char color

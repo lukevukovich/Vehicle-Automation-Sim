@@ -17,7 +17,7 @@ private:
 public:
 
     //Print one screen frame : border, lane, vehicle, traffic lights, sim data
-    void printSimScreen(char[][WIDTH], int, int, int, int, int);
+    void printSimScreen(char[][WIDTH], int, int, int, int, int, int);
     //Copy all column values to animate frame
     void animateLane(char[][WIDTH]);
 

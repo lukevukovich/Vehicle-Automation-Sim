@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void Screen::printSimScreen(char b[][WIDTH], int p, int ti, int u, int tu, int l) {
+void Screen::printSimScreen(char b[][WIDTH], int p, int ti, int u, int tu, int tr, int l) {
     int i, j, k, start, end;
     system("cls");
     string s = "";
@@ -29,7 +29,7 @@ void Screen::printSimScreen(char b[][WIDTH], int p, int ti, int u, int tu, int l
                 while (!found) {
                     if (b[k][0] == LANE) {
                         start = k;
-                        end = start + GAP;
+                        end = start + GAP + 1;
                         found = true;
                     }
                     else
@@ -52,7 +52,7 @@ void Screen::printSimScreen(char b[][WIDTH], int p, int ti, int u, int tu, int l
                 else
                 {
                     if (j == WIDTH - 1) {
-                        if (i < p || i > p + GAP)
+                        if (i < p || i > p + GAP + 1)
                             s += '|';
                         else
                             s += b[i][j];
@@ -72,7 +72,7 @@ void Screen::printSimScreen(char b[][WIDTH], int p, int ti, int u, int tu, int l
     }
 
     cout << s;
-    printf("\n Time: %ds   Units: %d   Vehicle Turns: %d   Traffic Lights: %d\n", ti, u, tu, l);
+    printf("\n Time: %ds   Units: %d   Turns: %d   Traffic: %d   Traffic Lights: %d\n", ti, u, tu, tr, l);
 }
 
 bool Screen::isObject(char b[][WIDTH], int i, int j) {
