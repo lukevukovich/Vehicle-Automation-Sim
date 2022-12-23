@@ -18,7 +18,7 @@ int main() {
     //Create sim board
     char board[LENGTH][WIDTH];
 
-    int i, j, laneStart, vehicleX, vehicleY, vehicleMove, turns, units, lights, generate;
+    int i, j, laneStart, vehicleX, vehicleY, vehicleMove, units, turns, traffic, lights, generate;
 
     time_t start, end;
     int diff, elapsed = 0;
@@ -39,7 +39,7 @@ int main() {
     Lane lane = Lane();
     Vehicle vehicle = Vehicle();
     TrafficLight trafficLight = TrafficLight();
-    Traffic traffic = Traffic();
+    Traffic oncomingTraffic = Traffic();
 
     //Set initial lane position
     //laneStart : starting y position of lane. Lane has width of GAP - 1
@@ -52,7 +52,7 @@ int main() {
     vehicleY = WIDTH/2;
     vehicle.setInitialVehicle(board, vehicleX, vehicleY);
 
-    turns = 0, units = 0, lights = 0;
+    turns = 0, units = 0, lights = 0, traffic = 0;
 
     //Start timer
     time(&start);
@@ -61,7 +61,7 @@ int main() {
     while(!kbhit()) {
 
         //Print sim screen
-        screen.printSimScreen(board, laneStart, elapsed, units, turns, lights);
+        screen.printSimScreen(board, laneStart, elapsed, units, turns, traffic, lights);
 
         //Check for red light
         isRedLight = vehicle.trafficLightLogic(board, vehicleX, vehicleY);
@@ -79,7 +79,7 @@ int main() {
                 elapsed = diff;
 
                 //Update screen while vehicle is stopped
-                screen.printSimScreen(board, laneStart, elapsed, units, turns, lights);
+                screen.printSimScreen(board, laneStart, elapsed, units, turns, traffic, lights);
                 Sleep(500);
 
                 i++;
@@ -89,13 +89,12 @@ int main() {
         //Set number of lights passed
         lights = vehicle.getLights();
 
-        traffic.setTraffic(board, units, laneStart);
-
         //Get vehicle's vertical move based on lane position
-        vehicleMove = vehicle.automationLogic(board, vehicleX, vehicleY);
+        vehicleMove = vehicle.turnLogic(board, vehicleX, vehicleY);
         vehicleX += vehicleMove;
-        //Set number of vehicle turns
+        //Set number of vehicle turns and traffic passed
         turns = vehicle.getTurns();
+        traffic = vehicle.getTraffic();
 
         //Move all columns 1 to the left to give on animation effect
         screen.animateLane(board);
@@ -104,6 +103,9 @@ int main() {
         lane.setLanePiece(board, laneStart, WIDTH - 1);
         //Set number of units traveled
         units = vehicle.getUnits();
+
+        //Generate oncoming traffic
+        oncomingTraffic.setTraffic(board, units, laneStart);
 
         generate = rand() % 3;
         //Generate traffic light
@@ -117,6 +119,8 @@ int main() {
         time(&end);
         diff = (int) difftime(end, start);
         elapsed = diff;
+
+        //Sleep(1000);
 
     }
 
