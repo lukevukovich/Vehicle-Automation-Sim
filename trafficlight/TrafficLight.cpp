@@ -4,6 +4,7 @@
 
 void TrafficLight::setTrafficLight(char b[][WIDTH], int u, int p) {
     int i, x;
+    
     if (u % INTERVAL == 0) {
         x = rand() % 2;
         for (i = p + 1; i < p + GAP + 1; i++) {
