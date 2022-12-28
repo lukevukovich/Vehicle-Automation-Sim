@@ -1,6 +1,8 @@
 #include <windows.h>
+#include <iostream>
 #include <ctime>
 #include <conio.h>
+#include <climits>
 #include "Lane/Lane.h"
 #include "Vehicle/Vehicle.h"
 #include "TrafficLight/TrafficLight.h"
@@ -8,6 +10,14 @@
 #include "Traffic/Traffic.h"
 
 using namespace std;
+
+int speedInput();
+int lightInput();
+int trafficInput();
+
+enum speed_enum {SLOW = 125, NORMAL = 25, FAST = 0};
+enum light_enum {YES = 1, NO = 2};
+enum traffic_enum {NONE = 0, LIGHT = 10, HEAVY = 5};
 
 /*
  * All vehicle automation/detection logic is standalone from simulation generation.
@@ -18,7 +28,10 @@ int main() {
     //Create sim board
     char board[LENGTH][WIDTH];
 
-    int i, j, laneStart, vehicleX, vehicleY, vehicleMove, units, turns, traffic, lights, generate;
+    int i, j;
+    int laneStart, vehicleX, vehicleY, vehicleMove;
+    int units, turns, traffic, lights;
+    int speedIn, lightIn, trafficIn, generate;
 
     time_t start, end;
     int diff, elapsed = 0;
@@ -40,6 +53,12 @@ int main() {
     Vehicle vehicle = Vehicle();
     TrafficLight trafficLight = TrafficLight();
     Traffic oncomingTraffic = Traffic();
+
+    speedIn = speedInput();
+    lightIn = lightInput();
+
+    trafficIn = trafficInput();
+    oncomingTraffic.setInterval(trafficIn);
 
     //Set initial lane position
     //laneStart : starting y position of lane. Lane has width of GAP - 1
@@ -105,11 +124,12 @@ int main() {
         units = vehicle.getUnits();
 
         //Generate oncoming traffic
-        oncomingTraffic.setTraffic(board, units, laneStart);
+        if (oncomingTraffic.getInterval() != 0)
+            oncomingTraffic.setTraffic(board, units, laneStart);
 
         generate = rand() % 3;
         //Generate traffic light
-        if (units > INTERVAL && generate == 0)
+        if (units > INTERVAL && generate == 0 && lightIn == YES)
             trafficLight.setTrafficLight(board, units, laneStart);
 
         //Move vehicle based on automation logic
@@ -120,9 +140,88 @@ int main() {
         diff = (int) difftime(end, start);
         elapsed = diff;
 
-        //Sleep(1000);
+        Sleep(speedIn);
 
     }
 
     return 0;
+}
+
+int speedInput() {
+    int in;
+    speed_enum speed;
+
+    cout << "Speed: ";
+    cin >> in;
+
+    while (!cin.good()) {
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+
+        cout << "Speed: ";
+        cin >> in;
+    }
+
+    if (in == 1)
+        speed = SLOW;
+    else if (in == 2)
+        speed = NORMAL;
+    else
+        speed = FAST;
+
+    system("cls");
+
+    return speed;
+}
+
+int lightInput() {
+    int in;
+    int light;
+
+    cout << "Traffic Lights: ";
+    cin >> in;
+
+    while (!cin.good()) {
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+
+        cout << "Traffic Lights: ";
+        cin >> in;
+    }
+
+    if (in == 1)
+        light = YES;
+    else
+        light = NO;
+
+    system("cls");
+
+    return light;
+}
+
+int trafficInput() {
+    int in;
+    traffic_enum traffic;
+
+    cout << "Oncoming Traffic: ";
+    cin >> in;
+
+    while (!cin.good()) {
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+
+        cout << "Oncoming Speed: ";
+        cin >> in;
+    }
+
+    if (in == 1)
+        traffic = NONE;
+    else if (in == 2)
+        traffic = LIGHT;
+    else
+        traffic = HEAVY;
+
+    system("cls");
+
+    return traffic;
 }
