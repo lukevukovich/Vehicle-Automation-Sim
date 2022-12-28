@@ -12,12 +12,14 @@
 using namespace std;
 
 int speedInput();
+int laneInput();
 int lightInput();
 int trafficInput();
 
 enum speed_enum {SLOW = 125, NORMAL = 25, FAST = 0};
+enum lane_enum {SMALL = 7,  MEDIUM = 10, LARGE = 13};
 enum light_enum {YES = 1, NO = 2};
-enum traffic_enum {NONE = 0, LIGHT = 10, HEAVY = 5};
+enum traffic_enum {NONE = 0, LIGHT = 8, HEAVY = 4};
 
 /*
  * All vehicle automation/detection logic is standalone from simulation generation.
@@ -29,7 +31,7 @@ int main() {
     char board[LENGTH][WIDTH];
 
     int i, j;
-    int laneStart, vehicleX, vehicleY, vehicleMove;
+    int gap, laneStart, vehicleX, vehicleY, vehicleMove;
     int units, turns, traffic, lights;
     int speedIn, lightIn, trafficIn, generate;
 
@@ -55,6 +57,13 @@ int main() {
     Traffic oncomingTraffic = Traffic();
 
     speedIn = speedInput();
+
+    gap = laneInput();
+    lane.setGap(gap);
+    screen.setLane(lane);
+    trafficLight.setLane(lane);
+    oncomingTraffic.setLane(lane);
+
     lightIn = lightInput();
 
     trafficIn = trafficInput();
@@ -62,12 +71,12 @@ int main() {
 
     //Set initial lane position
     //laneStart : starting y position of lane. Lane has width of GAP - 1
-    laneStart = rand() % (LENGTH - GAP);
+    laneStart = rand() % (LENGTH - lane.getGap());
     lane.setLanePiece(board, laneStart, WIDTH - 1);
     lane.setInitialLane(board, laneStart);
 
     //Set vehicle position values
-    vehicleX = laneStart + GAP - 1;
+    vehicleX = laneStart + lane.getGap() - 1;
     vehicleY = WIDTH/2;
     vehicle.setInitialVehicle(board, vehicleX, vehicleY);
 
@@ -151,14 +160,16 @@ int speedInput() {
     int in;
     speed_enum speed;
 
-    cout << "Speed: ";
+    cout << " -----------\n |  SPEED  |\n -----------";
+    cout << "\n (1) Slow\n (2) Normal\n (3) Fast\n";
+    cout << "\n Select: ";
     cin >> in;
 
     while (!cin.good()) {
         cin.clear();
         cin.ignore(INT_MAX, '\n');
 
-        cout << "Speed: ";
+        cout << " Select: ";
         cin >> in;
     }
 
@@ -174,18 +185,49 @@ int speedInput() {
     return speed;
 }
 
-int lightInput() {
+int laneInput() {
     int in;
-    int light;
+    lane_enum lane;
 
-    cout << "Traffic Lights: ";
+    cout << " ----------\n |  LANE  |\n ----------";
+    cout << "\n (1) Small\n (2) Medium\n (3) Large\n";
+    cout << "\n Select: ";
     cin >> in;
 
     while (!cin.good()) {
         cin.clear();
         cin.ignore(INT_MAX, '\n');
 
-        cout << "Traffic Lights: ";
+        cout << " Select: ";
+        cin >> in;
+    }
+
+    if (in == 1)
+        lane = SMALL;
+    else if (in == 2)
+        lane = MEDIUM;
+    else
+        lane = LARGE;
+
+    system("cls");
+
+    return lane;
+}
+
+int lightInput() {
+    int in;
+    int light;
+
+    cout << " ------------------\n | TRAFFIC LIGHTS |\n ------------------";
+    cout << "\n (1) Yes\n (2) No\n";
+    cout << "\n Select: ";
+    cin >> in;
+
+    while (!cin.good()) {
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+
+        cout << " Select: ";
         cin >> in;
     }
 
@@ -203,14 +245,16 @@ int trafficInput() {
     int in;
     traffic_enum traffic;
 
-    cout << "Oncoming Traffic: ";
+    cout << " -----------\n | TRAFFIC |\n -----------";
+    cout << "\n (1) None\n (2) Light\n (3) Heavy\n";
+    cout << "\n Select: ";
     cin >> in;
 
     while (!cin.good()) {
         cin.clear();
         cin.ignore(INT_MAX, '\n');
 
-        cout << "Oncoming Speed: ";
+        cout << " Select: ";
         cin >> in;
     }
 
