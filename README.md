@@ -4,4 +4,5 @@ Currently includes lane and traffic light generation.
 Vehicle will react to simulation environment accordingly.
 
 To do list:
-* Allow for user customization of sim (size, population, speed, etc)
+* Add more user customization options
+* Create better UI for user input
