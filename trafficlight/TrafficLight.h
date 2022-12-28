@@ -15,7 +15,11 @@
 
 class TrafficLight {
 
+private:
+    Lane lane;
+
 public:
+    void setLane(Lane);
 
     //Generate traffic light
     void setTrafficLight(char[][WIDTH], int, int);
