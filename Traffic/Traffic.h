@@ -11,7 +11,16 @@
 
 class Traffic {
 
+private:
+    int interval;
+
 public:
+    Traffic();
+    Traffic(int);
+
+    int getInterval();
+    void setInterval(int);
+
     //Generate oncoming traffic
     void setTraffic(char[][WIDTH], int, int);
 
