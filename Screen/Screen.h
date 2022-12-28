@@ -6,6 +6,8 @@
 class Screen {
 
 private:
+    Lane lane;
+
     //Checks if value is an object (vehicle or traffic light)
     bool isObject(char[][WIDTH], int, int);
     //Set color of certain objects
@@ -15,6 +17,8 @@ private:
     void copyNextColumn(char[][WIDTH], int);
 
 public:
+
+    void setLane(Lane);
 
     //Print one screen frame : border, lane, vehicle, traffic lights, sim data
     void printSimScreen(char[][WIDTH], int, int, int, int, int, int);

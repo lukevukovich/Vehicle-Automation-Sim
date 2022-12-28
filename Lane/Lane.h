@@ -6,9 +6,6 @@
 //Length & width of sim board
 #define LENGTH 25
 #define WIDTH (LENGTH*3)
-//Lane width
-//MUST BE >= 6
-#define GAP 7
 //Lane edge character
 #define LANE 'W'
 //Reset char color
@@ -18,7 +15,16 @@ using namespace std;
 
 class Lane {
 
+private:
+    int gap;
+
 public:
+    Lane();
+    Lane(int);
+
+    int getGap();
+    void setGap(int);
+
     //Set initial straight lane at start of sim
     void setInitialLane(char[][WIDTH], int);
     //Generate valid lane section

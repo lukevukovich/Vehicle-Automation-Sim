@@ -13,6 +13,7 @@ class Traffic {
 
 private:
     int interval;
+    Lane lane;
 
 public:
     Traffic();
@@ -20,6 +21,8 @@ public:
 
     int getInterval();
     void setInterval(int);
+
+    void setLane(Lane);
 
     //Generate oncoming traffic
     void setTraffic(char[][WIDTH], int, int);

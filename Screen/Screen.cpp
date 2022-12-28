@@ -7,6 +7,10 @@
 
 using namespace std;
 
+void Screen::setLane(Lane l) {
+    lane = l;
+}
+
 void Screen::printSimScreen(char b[][WIDTH], int p, int ti, int u, int tu, int tr, int l) {
     int i, j, k, start, end;
     system("cls");
@@ -29,7 +33,7 @@ void Screen::printSimScreen(char b[][WIDTH], int p, int ti, int u, int tu, int t
                 while (!found) {
                     if (b[k][0] == LANE) {
                         start = k;
-                        end = start + GAP + 1;
+                        end = start + lane.getGap() + 1;
                         found = true;
                     }
                     else
@@ -52,7 +56,7 @@ void Screen::printSimScreen(char b[][WIDTH], int p, int ti, int u, int tu, int t
                 else
                 {
                     if (j == WIDTH - 1) {
-                        if (i < p || i > p + GAP + 1)
+                        if (i < p || i > p + lane.getGap() + 1)
                             s += '|';
                         else
                             s += b[i][j];
