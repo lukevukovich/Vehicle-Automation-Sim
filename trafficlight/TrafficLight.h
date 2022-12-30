@@ -16,9 +16,11 @@
 class TrafficLight {
 
 private:
+    //Lane object to get gap value
     Lane lane;
 
 public:
+    //Set lane object
     void setLane(Lane);
 
     //Generate traffic light

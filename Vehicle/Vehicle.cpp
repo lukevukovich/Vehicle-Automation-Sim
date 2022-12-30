@@ -3,6 +3,10 @@
 #include "../TrafficLight/TrafficLight.h"
 #include "../Traffic/Traffic.h"
 
+Vehicle::Vehicle() {
+    resetVehicle();
+}
+
 void Vehicle::setInitialVehicle(char b[][WIDTH], int x, int y) {
     b[x][y] = VEHICLE;
 }
@@ -102,4 +106,11 @@ int Vehicle::getLights() {
 
 int Vehicle::getUnits() {
     return units;
+}
+
+void Vehicle::resetVehicle() {
+    units = 1;
+    turns = 0;
+    lights = 0;
+    traffic = 0;
 }

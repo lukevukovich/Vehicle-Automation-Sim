@@ -6,6 +6,7 @@
 class Screen {
 
 private:
+    //Lane object to get gap value
     Lane lane;
 
     //Checks if value is an object (vehicle or traffic light)
@@ -18,6 +19,7 @@ private:
 
 public:
 
+    //Set lane object
     void setLane(Lane);
 
     //Print one screen frame : border, lane, vehicle, traffic lights, sim data

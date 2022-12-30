@@ -11,12 +11,18 @@
 class Vehicle {
 private:
     //Keep track of sim data. Vehicle functions update these values
-    int units = 1;
-    int turns = 0;
-    int lights = 0;
-    int traffic = 0;
+    int units;
+    int turns;
+    int lights;
+    int traffic;
+
+    //Reset vehicle attributes
+    void resetVehicle();
 
 public:
+
+    //Constructor
+    Vehicle();
 
     //Set vehicle position to center of screen and inside of lane
     void setInitialVehicle(char[][WIDTH], int, int);

@@ -6,10 +6,6 @@ Traffic::Traffic() {
     interval = 5;
 }
 
-Traffic::Traffic(int i) {
-    interval = i;
-}
-
 void Traffic::setInterval(int i) {
     interval = i;
 }

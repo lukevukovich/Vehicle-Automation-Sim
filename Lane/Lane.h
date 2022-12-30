@@ -1,4 +1,4 @@
-#include <string>
+#include <iostream>
 
 #ifndef LANEAUTOMATIONSIM_LANE_H
 #define LANEAUTOMATIONSIM_LANE_H
@@ -16,12 +16,15 @@ using namespace std;
 class Lane {
 
 private:
+    //Lane width/gap attribute
     int gap;
 
 public:
+    //Constructors
     Lane();
     Lane(int);
 
+    //Get and set gap value
     int getGap();
     void setGap(int);
 

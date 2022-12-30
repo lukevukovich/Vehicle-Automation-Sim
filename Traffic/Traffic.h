@@ -12,16 +12,20 @@
 class Traffic {
 
 private:
+    //Interval that traffic is generated
     int interval;
+    //Lane object to get gap value
     Lane lane;
 
 public:
+    //Constructor
     Traffic();
-    Traffic(int);
 
+    //Get and set interval value
     int getInterval();
     void setInterval(int);
 
+    //Set lane object
     void setLane(Lane);
 
     //Generate oncoming traffic
